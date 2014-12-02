@@ -1,7 +1,7 @@
 {
   "name": "micro-events",
   "version": "0.0.0",
-  "description": "",
+  "description": "A very, very simple event emitter implementation.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
