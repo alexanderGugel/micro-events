@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "build": "uglifyjs index.js -mc > micro-events.min.js"
+    "build": "uglifyjs index.js -c \"evaluate=false\" --comments \"/    .*/\" -m --source-map micro-events-min.js.map -o micro-events-min.js"
   },
   "author": "Alexander Gugel <alexander.gugel@gmail.com>",
   "license": "ISC",
