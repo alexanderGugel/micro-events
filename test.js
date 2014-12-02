@@ -61,20 +61,33 @@ describe('EventEmitter', function () {
     });
 
     it('functions should check arguments', function () {
+        var eventEmitter = new EventEmitter();
         assert.throws(function () {
-            emit.on();
+            eventEmitter.on();
         });
         assert.throws(function () {
-            emit.on('boom', 'Not a function');
+            eventEmitter.on('boom', 'Not a function');
         });
         assert.throws(function () {
-            on.off();
+            eventEmitter.off();
         });
         assert.throws(function () {
-            emit.off('boom', 'Not a function');
+            eventEmitter.off('boom', 'Not a function');
         });
         assert.throws(function () {
-            off.emit();
+            eventEmitter.emit();
+        });
+        assert.throws(function () {
+            eventEmitter.pipe();
+        });
+        assert.throws(function () {
+            eventEmitter.pipe({});
+        });
+        assert.throws(function () {
+            eventEmitter.unpipe();
+        });
+        assert.throws(function () {
+            eventEmitter.unpipe({});
         });
     });
 
@@ -96,5 +109,36 @@ describe('EventEmitter', function () {
                 eventEmitter.on('boom', function () {});
             }
         });
+    });
+
+    it('#pipe()', function (done) {
+        var from = new EventEmitter();
+        var to = new EventEmitter();
+
+        from.pipe(to);
+
+        var originalEvent = {};
+        to.on('boom', function (event) {
+            assert(event, originalEvent);
+            done();
+        });
+
+        from.emit('boom', originalEvent);
+    });
+
+    it('#unpipe()', function () {
+        var from = new EventEmitter();
+        var to = new EventEmitter();
+
+        from.pipe(to);
+
+        var originalEvent = {};
+        to.on('boom', function (event) {
+            throw 'Unregistered handler has been called';
+        });
+
+        from.unpipe(to);
+
+        from.emit('boom', originalEvent);
     });
 });

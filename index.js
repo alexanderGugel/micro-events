@@ -15,8 +15,15 @@ function _contains(arr, element) {
     return arr.indexOf(element) !== -1;
 }
 
+function _checkPipeable(eventEmitter) {
+    if (typeof eventEmitter.emit !== 'function') {
+        throw 'Can\'t pipe to object without emit method';
+    }
+}
+
 function EventEmitter() {
     this.listeners = {};
+    this.pipedTo = [];
 }
 
 EventEmitter.prototype.maxListeners = 10;
@@ -56,6 +63,12 @@ EventEmitter.prototype.emit = function (eventName, event) {
     _each(this.listeners[eventName] || [], function (listener) {
         listener.apply(this, events);
     }, this);
+
+    var args = arguments;
+    _each(this.pipedTo, function (eventEmitter) {
+        eventEmitter.emit.apply(eventEmitter, args);
+    }, this);
+
     return this;
 };
 
@@ -68,6 +81,20 @@ EventEmitter.prototype.off = function (eventName, listener) {
         eventName: eventName,
         listener: listener
     });
+    return this;
+};
+
+EventEmitter.prototype.pipe = function (eventEmitter) {
+    _checkPipeable(eventEmitter);
+    if (!_contains(this.pipedTo, eventEmitter)) {
+        this.pipedTo.push(eventEmitter);
+    }
+    return this;
+};
+
+EventEmitter.prototype.unpipe = function (eventEmitter) {
+    _checkPipeable(eventEmitter);
+    _remove(this.pipedTo, eventEmitter);
     return this;
 };
 
