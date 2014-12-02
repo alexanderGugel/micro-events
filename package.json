@@ -1,0 +1,14 @@
+{
+  "name": "micro-events",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Alexander Gugel <alexander.gugel@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.0.1"
+  }
+}
