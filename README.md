@@ -17,8 +17,8 @@
 
 ## Installation
 
-**Node.js, browserify** `npm install micro-events --save`
-**Require.js** `require(["micro-events"], ...`
+- **Node.js, browserify** `npm install micro-events --save`
+- **Require.js** `require(["micro-events"], ...`
 
 ## Examples
 
