@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/alexanderGugel/micro-events.svg)](https://travis-ci.org/alexanderGugel/micro-events)
+
 # micro-events
 
 > A very, very simple event emitter implementation.
