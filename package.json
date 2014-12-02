@@ -21,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/alexanderGugel/micro-events/issues"
   },
-  "homepage": "https://github.com/alexanderGugel/micro-events"
+  "homepage": "https://github.com/alexanderGugel/micro-events",
+  "directories": {
+    "example": "examples"
+  },
+  "keywords": [
+    "util",
+    "events",
+    "server",
+    "client",
+    "browser"
+  ]
 }
