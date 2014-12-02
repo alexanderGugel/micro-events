@@ -57,6 +57,8 @@ setInterval(function () {
 }, 100);
 ```
 
+Want more code? - Look into /examples!
+
 ## How can I extend this?
 
 Just like you would extend any other "class".

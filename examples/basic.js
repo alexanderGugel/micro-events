@@ -1,4 +1,4 @@
-var EventEmitter = require('./index');
+var EventEmitter = require('../');
 var myEventEmitter = new EventEmitter();
 
 // Maximum number of listeners (used to prevent memory leaks and dumb code)
@@ -31,12 +31,3 @@ setInterval(function () {
         });
     }
 }, 100);
-
-var myEventEmitter2 = new EventEmitter();
-myEventEmitter.pipe(myEventEmitter2);
-
-myEventEmitter2.on('works', function () {
-    console.log('"works" event has been fired on myEventEmitter');
-});
-
-myEventEmitter.emit('works');
