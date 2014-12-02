@@ -7,13 +7,13 @@
 ## Features
 
 * no dependencies
-* very small (~ 80 LoC)
+* very small (~ 100 LoC)
 * smart memory leak detection
-* lighting fast
+* lightning fast
 * unopinionated and minimal
 * works in the browser (browserify) and on the server (Node.JS)
-* checks arguments
 * emits useful events (e.g. "on" and "off" when manipulating listeners)
+* supports #pipe() and #unpipe()
 
 ## How can I use this?
 
