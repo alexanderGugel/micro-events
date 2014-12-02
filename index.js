@@ -15,12 +15,6 @@ function _contains(arr, element) {
     return arr.indexOf(element) !== -1;
 }
 
-function _checkPipeable(eventEmitter) {
-    if (typeof eventEmitter.emit !== 'function') {
-        throw 'Can\'t pipe to object without emit method';
-    }
-}
-
 function EventEmitter() {
     this.listeners = {};
     this.pipedTo = [];
@@ -37,6 +31,12 @@ function _validateEventName(eventName) {
 function _validateListener(listener) {
     if (typeof listener !== 'function') {
         throw 'listener is not a function';
+    }
+}
+
+function _checkPipeable(eventEmitter) {
+    if (typeof eventEmitter.emit !== 'function') {
+        throw 'Can\'t pipe to object without emit method';
     }
 }
 
