@@ -11,6 +11,7 @@
 * unopinionated and minimal
 * works in the browser and on Node.JS
 * checks arguments
+* emits useful events
 
 ## How can I use this?
 
@@ -20,12 +21,11 @@
 
     // Maximum number of listeners (used to prevent memory leaks and dumb code)
     // - defaults to 10
-    myEventEmitter.maxListerners = 20;
+    myEventEmitter.maxListeners = 20;
 
     // Implement listener
     var onRun = function (explosion) {
         console.log(explosion);
-        console.log('Run!');
     };
 
     // Register onRun event listener
@@ -40,11 +40,13 @@
         if (Math.random() < 0.1) {
             // Emit explosion event
             myEventEmitter.emit('explosion', {
-                when: Date.getTime()
+                t: new Date().getTime()
             });
         } else {
             // Emit noExplosion event
-            myEventEmitter.emit('noExplosion');
+            myEventEmitter.emit('noExplosion', {
+                t: new Date().getTime()
+            });
         }
     }, 100);
 

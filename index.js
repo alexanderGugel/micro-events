@@ -1,6 +1,6 @@
 function _each(arr, func, thisArg) {
     for (var i = 0; i < arr.length; i++) {
-        arr[i].call(thisArg, arr[i]);
+        func.call(thisArg, arr[i]);
     }
 }
 
@@ -38,7 +38,7 @@ EventEmitter.prototype.on = function (eventName, listener) {
     _validateListener(listener);
     this.listeners[eventName] = this.listeners[eventName] || [];
     if (this.listeners[eventName].length > this.maxListeners) {
-        throw 'Exceeded maxListeners. You might have a memory leak';
+        throw 'Exceeded maxListeners - You might have a memory leak';
     }
     if (!_contains(this.listeners[eventName], listener)) {
         this.listeners[eventName].push(listener);
@@ -52,9 +52,8 @@ EventEmitter.prototype.on = function (eventName, listener) {
 
 EventEmitter.prototype.emit = function (eventName, event) {
     _validateEventName(eventName);
-    var args = Array.prototype.slice.call(arguments, 1, -1);
     _each(this.listeners[eventName] || [], function (listener) {
-        listener.apply(this, args);
+        listener.call(this, event);
     }, this);
     return this;
 };
