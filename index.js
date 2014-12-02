@@ -52,8 +52,9 @@ EventEmitter.prototype.on = function (eventName, listener) {
 
 EventEmitter.prototype.emit = function (eventName, event) {
     _validateEventName(eventName);
+    var events = Array.prototype.slice.call(arguments, 1);
     _each(this.listeners[eventName] || [], function (listener) {
-        listener.call(this, event);
+        listener.apply(this, events);
     }, this);
     return this;
 };

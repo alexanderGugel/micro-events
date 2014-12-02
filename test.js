@@ -14,6 +14,22 @@ describe('EventEmitter', function () {
         eventEmitter.emit('boom', originalEvent);
     });
 
+    it('#emit() should work with multiple events in arguments', function (done) {
+        var eventEmitter = new EventEmitter();
+        var originalEvent1 = {};
+        var originalEvent2 = {};
+        var originalEvent3 = {};
+
+        eventEmitter.on('boom', function (event1, event2, event3) {
+            assert(event1, originalEvent1);
+            assert(event2, originalEvent2);
+            assert(event3, originalEvent3);
+
+            done();
+        });
+        eventEmitter.emit('boom', originalEvent1, originalEvent2, originalEvent3);
+    });
+
     it('#on() should only register handler once', function (done) {
         var eventEmitter = new EventEmitter();
         var originalEvent = {};
