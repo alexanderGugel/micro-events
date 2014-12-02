@@ -15,11 +15,12 @@
 * emits useful events (e.g. "on" and "off" when manipulating listeners)
 * supports #pipe() and #unpipe()
 
-## How can I use this?
+## Installation
 
-Install it via npm:
+**Node.js, browserify** `npm install micro-events --save`
+**Require.js** `require(["micro-events"], ...`
 
-`npm install micro-events --save`
+## Examples
 
 ```javascript
 var EventEmitter = require('micro-events'); // require it
@@ -57,7 +58,7 @@ setInterval(function () {
 }, 100);
 ```
 
-Want more code? - Look into /examples!
+Want more code? - Look into `/examples`!
 
 ## How can I extend this?
 
